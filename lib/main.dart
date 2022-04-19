@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:onsite_tracking/screens/login.dart';
 import 'package:onsite_tracking/screens/onboarding.dart';
@@ -9,35 +7,16 @@ import 'provider/visits_provider.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
 import 'screens/task_list.dart';
+import 'screens/onboarding.dart';
 
 void main() {
   runApp(MyApp());
-
-
-
 }
 
-class MyApp extends StatefulWidget {
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-
-
-}
-
-class _MyAppState extends State<MyApp> {
-  void initState() {
-    super.initState();
-    Timer(const Duration(seconds: 3), openOnBoard);
-
-  }
+class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-
-
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -48,18 +27,19 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (ctx){
           return VisitsProvider();
 
-        }
-        )
+        })
+
       ],
 
 
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-            primaryColor: Colors.orange,
+            primaryColor: Color.fromRGBO(249, 96, 96, 1)
+              ,
             buttonColor: Colors.red,
             appBarTheme: AppBarTheme(
-              color: Colors.orange
+              color: Color.fromRGBO(249, 96, 96, 1)
             ),
             buttonTheme: ButtonThemeData(
             buttonColor: Colors.blue
@@ -79,9 +59,10 @@ class _MyAppState extends State<MyApp> {
             // is not restarted.
           ),
 
-          initialRoute:Onboarding.routeName,
+          initialRoute: onboarding.routeName,
           routes:{
-            Onboarding.routeName :(ctx)=> Onboarding(),
+            onboarding.routeName :(ctx)=> onboarding(),
+
            HomeScreen.routeName :(ctx)=> HomeScreen(),
             LoginScreen.routeName :(ctx)=> LoginScreen(),
             ListScreen.routeName :(ctx)=> ListScreen(),
@@ -91,8 +72,4 @@ class _MyAppState extends State<MyApp> {
     );
     }
 
-  void openOnBoard()
-  {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>Onboarding()));
-  }
 }

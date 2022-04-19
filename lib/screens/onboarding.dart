@@ -2,24 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:onsite_tracking/screens/login.dart';
 
 
-
-class Onboarding extends StatelessWidget {
-
-  static const routeName = '/onBoard';
-  const Onboarding({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-
-      ),
-      home: onboarding(),
-    );
-  }
-}
 class onboarding extends StatefulWidget {
+  static const routeName = '/onBoard';
 
   @override
   _onboardingState createState() => _onboardingState();
@@ -40,21 +24,18 @@ class _onboardingState extends State<onboarding> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height*0.6,
+                height: MediaQuery.of(context).size.height * 0.6,
                 child: PageView(
                   controller: _pageController,
                   children: [
-                    onBoardPage("onboard1", "Welcome to hamda"),
-                    onBoardPage("onboard2", "Work Happens"),
-                    onBoardPage("onboard3", "Task and Assignments"),
+                    onBoardPage("onboard1", "Welcome to hamda","hi"),
+                    onBoardPage("onboard2", "Work Happens","s"),
+                    onBoardPage("onboard3", "Task and Assignments","w"),
                   ],
                   onPageChanged: (value)=>{setCurrentPage(value)},
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(3, (index) => getIndicator(index)),
-              )
+
             ],
           ),
           Positioned(
@@ -92,9 +73,13 @@ class _onboardingState extends State<onboarding> {
                       ),),
                     ),
                   ),
-                  const SizedBox(height: 30,),
-
+                  const SizedBox(height: 50,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(3, (index) => getIndicator(index)),
+                  )
                 ],
+
               ),
             ),
           )
@@ -119,7 +104,7 @@ class _onboardingState extends State<onboarding> {
       ),
     );
   }
-  Column onBoardPage(String img, String title)
+  Column onBoardPage(String img, String title, String newtext)
   {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -147,7 +132,7 @@ class _onboardingState extends State<onboarding> {
         ),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-          child: const Text("Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text", style: TextStyle(
+          child:  Text(newtext, style: TextStyle(
               fontSize: 16,
               color: Colors.grey
           ),textAlign: TextAlign.center,),
