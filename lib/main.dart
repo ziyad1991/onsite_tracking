@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:onsite_tracking/screens/login.dart';
+import 'package:onsite_tracking/screens/onboarding.dart';
 import 'package:provider/provider.dart';
 import 'provider/auth_provider.dart';
 import 'provider/visits_provider.dart';
@@ -9,12 +12,32 @@ import 'screens/task_list.dart';
 
 void main() {
   runApp(MyApp());
+
+
+
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+
+}
+
+class _MyAppState extends State<MyApp> {
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 3), openOnBoard);
+
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+
+
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -25,8 +48,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx){
           return VisitsProvider();
 
-        })
-
+        }
+        )
       ],
 
 
@@ -56,9 +79,9 @@ class MyApp extends StatelessWidget {
             // is not restarted.
           ),
 
-          initialRoute: LoginScreen.routeName,
+          initialRoute:Onboarding.routeName,
           routes:{
-
+            Onboarding.routeName :(ctx)=> Onboarding(),
            HomeScreen.routeName :(ctx)=> HomeScreen(),
             LoginScreen.routeName :(ctx)=> LoginScreen(),
             ListScreen.routeName :(ctx)=> ListScreen(),
@@ -68,4 +91,8 @@ class MyApp extends StatelessWidget {
     );
     }
 
+  void openOnBoard()
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>Onboarding()));
+  }
 }
