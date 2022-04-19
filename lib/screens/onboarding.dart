@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:onsite_tracking/screens/login.dart';
 
 
-class onboarding extends StatefulWidget {
+class onboarding extends StatefulWidget  {
   static const routeName = '/onBoard';
 
   @override
